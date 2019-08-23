@@ -42,6 +42,6 @@ class server
         echo '用户'.$fd.'关闭了连接';
     }
 
-
-
 }
+
+new server();
