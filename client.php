@@ -17,7 +17,6 @@ class client
         $this->client->on('connect', [$this, 'onConnect']);
         $this->client->on('receive', [$this, 'onReceive']);
         $this->client->on('error', [$this, 'onError']);
-        $this->client->on('close', [$this, 'onClose']);
         $this->client->connect(self::ip, self::port);
         return $this;
     }
@@ -41,6 +40,7 @@ class client
             'params' =>isset($arguments[0])?$arguments[0]:''
         ];
         $this->client->send(json_encode($arr));
+        $this->client->close();
     }
 }
 
