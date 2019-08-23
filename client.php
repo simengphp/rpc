@@ -11,7 +11,7 @@ class client
     const port = '9001';
     protected $client;
     protected $service;
-    public function __construct()
+    public function connect()
     {
         $this->client = new Swoole\Client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
         $this->client->on('connect', [$this, 'onConnect']);
