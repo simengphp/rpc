@@ -49,7 +49,7 @@ class client
             'action' =>$name,
             'params' =>isset($arguments[0])?$arguments[0]:''
         ];
-        (new client())->send(json_encode($arr));
+        (new client())->connect()->send(json_encode($arr));
     }
 }
 
