@@ -31,3 +31,5 @@ class client
         // TODO: Implement __call() method.
     }
 }
+
+new client();
