@@ -38,7 +38,7 @@ class client
         $arr = [
             'service' => $this->service,
             'action' =>$name,
-            'params' =>$arguments[0]?$arguments[0]:''
+            'params' =>isset($arguments[0])?$arguments[0]:''
         ];
         $this->client->send(json_encode($arr));
     }
