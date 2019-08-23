@@ -27,13 +27,14 @@ class client
         $this->client->send("hello world\n");
     }
 
-    public function onClose()
-    {
-    }
-
     public function onReceive($cli, $data)
     {
         echo "Receive: $data";
+    }
+
+    public function onClose($cli)
+    {
+        $cli->close();
     }
 
     public function __call($name, $arguments)
@@ -48,7 +49,7 @@ class client
             'action' =>$name,
             'params' =>isset($arguments[0])?$arguments[0]:''
         ];
-        $this->client->send(json_encode($arr));
+        (new client())->send(json_encode($arr));
     }
 }
 
