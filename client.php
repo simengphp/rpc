@@ -13,12 +13,12 @@ class client
     protected $service;
     public function __construct()
     {
-//        $this->client = new Swoole\Client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
-//        $this->client->on('connect', [$this, 'onConnect']);
-//        $this->client->on('receive', [$this, 'onReceive']);
-//        $this->client->on('error', [$this, 'onError']);
-//        $this->client->on('close', [$this, 'onClose']);
-//        $this->client->connect(self::ip, self::port);
+        $this->client = new Swoole\Client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
+        $this->client->on('connect', [$this, 'onConnect']);
+        $this->client->on('receive', [$this, 'onReceive']);
+        $this->client->on('error', [$this, 'onError']);
+        $this->client->on('close', [$this, 'onClose']);
+        $this->client->connect(self::ip, self::port);
         return $this;
     }
 
@@ -38,7 +38,7 @@ class client
         $arr = [
             'service' => $this->service,
             'action' =>$name,
-            'params' =>$arguments[0]
+            'params' =>$arguments[0]?$arguments[0]:''
         ];
         $this->client->send(json_encode($arr));
     }
