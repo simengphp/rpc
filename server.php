@@ -5,7 +5,9 @@
      * Date: 2019/8/23
      * Time: 16:15
      */
-spl_autoload_register('my_autoloader');
+spl_autoload_register(function ($class) {
+    include_once __DIR__.'/service/' . $class .'php';
+});
 class server
 {
     const ip   = '0.0.0.0';
@@ -26,10 +28,6 @@ class server
         $this->server->on('Close', [$this, 'onClose']);
         $this->server->start();
 
-    }
-
-    function my_autoloader($class) {
-        include_once __DIR__.'/service/' . $class .'php';
     }
 
     public function onConnect($serv, $fd)
