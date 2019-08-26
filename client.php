@@ -8,7 +8,7 @@
 class client
 {
     const ip = '47.97.108.227';
-    const port = '9001';
+    const port = '9002';
     protected $client;
     protected $service;
     public function connect()
@@ -49,14 +49,7 @@ class client
             'action' =>$name,
             'params' =>isset($arguments[0])?$arguments[0]:''
         ];
-        $this->client = new Swoole\Client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
-        $this->client->on('connect', function () use ($arr) {
-            $this->client->send(json_encode($arr));
-        });
-        $this->client->on('receive', [$this, 'onReceive']);
-        $this->client->on('error', [$this, 'onError']);
-        $this->client->on('close', [$this, 'onClose']);
-        $this->client->connect(self::ip, self::port);
+        var_dump(111);
     }
 }
 
