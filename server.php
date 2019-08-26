@@ -24,15 +24,22 @@ class server
         $this->server->on('Receive', [$this, 'onReceive']);
         $this->server->on('Close', [$this, 'onClose']);
         $this->server->start();
+        spl_autoload_register('my_autoloader');
+    }
+
+    function my_autoloader($class) {
+        include_once __DIR__.'/service/' . $class;
     }
 
     public function onConnect($serv, $fd)
     {
-        echo '用户'.$fd.'连接进来了';
+//        echo '用户'.$fd.'连接进来了';
     }
 
     public function onReceive($serv, $fd, $reactor_id, $data)
     {
+        $arr = json_decode($data, true);
+        $data = (new $arr['service'])->$arr['action']($arr['params']);
         var_dump($data);
         $serv->send($fd, 'Swoole: '.$data);
         $serv->close($fd);
@@ -40,7 +47,7 @@ class server
 
     public function onClose($serv, $fd)
     {
-        echo '用户'.$fd.'关闭了连接';
+        //echo '用户'.$fd.'关闭了连接';
     }
 
 }
