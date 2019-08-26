@@ -52,7 +52,9 @@ class client
         $this->client = new Swoole\Client(SWOOLE_SOCK_TCP);
         $this->client->connect(self::ip, self::port);
         $this->client->send(json_encode($arr));
+        $data = $this->client->recv();
         $this->client->close();
+        var_dump($data);
     }
 }
 

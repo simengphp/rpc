@@ -14,11 +14,10 @@ class GoodsService
 
     public function getGoodsList()
     {
-//        $arr = [
-//            ['title'=>'苹果', 'price'=>10],
-//            ['title'=>'香蕉', 'price'=>20]
-//        ];
-        $arr = array(1,2,3);
+        $arr = [
+            ['title'=>'苹果', 'price'=>10],
+            ['title'=>'香蕉', 'price'=>20]
+        ];
         return json_encode($arr);
     }
 }
