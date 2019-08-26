@@ -38,7 +38,12 @@ class server
     public function onReceive($serv, $fd, $reactor_id, $data)
     {
         $arr = json_decode($data, true);
-        $data = (new $arr['service'])->$arr['action']($arr['params']);
+        $className = $arr['service'];
+        $action = $arr['action'];
+        $param = $arr['params'];
+        $obj = new $className;
+        $return_data = $obj->$action($param);
+        var_dump($return_data);
         $serv->send($fd, 'Swoole: '.json_encode($data));
         $serv->close($fd);
     }
