@@ -39,7 +39,7 @@ class server
     {
         $arr = json_decode($data, true);
         var_dump($arr);
-        $data = (new $arr['service'])->$arr['action']($arr['params']);
+        $data = (new $arr['service'])->$arr['action'];
         $serv->send($fd, 'Swoole: '.json_encode($data));
         $serv->close($fd);
     }
