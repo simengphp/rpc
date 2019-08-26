@@ -28,7 +28,7 @@ class server
     }
 
     function my_autoloader($class) {
-        include_once __DIR__.'/service/' . $class;
+        include_once __DIR__.'/service/' . $class .'php';
     }
 
     public function onConnect($serv, $fd)
