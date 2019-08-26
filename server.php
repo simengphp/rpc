@@ -5,6 +5,7 @@
      * Date: 2019/8/23
      * Time: 16:15
      */
+spl_autoload_register('my_autoloader');
 class server
 {
     const ip   = '0.0.0.0';
@@ -24,7 +25,7 @@ class server
         $this->server->on('Receive', [$this, 'onReceive']);
         $this->server->on('Close', [$this, 'onClose']);
         $this->server->start();
-        spl_autoload_register('my_autoloader');
+
     }
 
     function my_autoloader($class) {
