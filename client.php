@@ -54,8 +54,9 @@ class client
         $this->client->send(json_encode($arr));
         $data = $this->client->recv();
         $this->client->close();
-        var_dump($data);
+        return $data;
     }
 }
 
-(new client())->service('GoodsService')->getGoodsList();
+$data = (new client())->service('GoodsService')->getGoodsList();
+var_dump($data);

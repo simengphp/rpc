@@ -43,8 +43,7 @@ class server
         $param = $arr['params'];
         $obj = new $className;
         $return_data = $obj->$action($param);
-        var_dump($return_data);
-        $serv->send($fd, 'Swoole: '.json_encode($data));
+        $serv->send($fd, 'Swoole: '.json_encode($return_data));
         $serv->close($fd);
     }
 
