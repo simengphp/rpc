@@ -49,7 +49,10 @@ class client
             'action' =>$name,
             'params' =>isset($arguments[0])?$arguments[0]:''
         ];
-        var_dump(111);
+        $this->client = new Swoole\Client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
+        $this->client->connect(self::ip, self::port);
+        $this->client->send(json_encode($arr));
+        $this->client->close();
     }
 }
 
