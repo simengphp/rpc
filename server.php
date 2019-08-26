@@ -6,7 +6,7 @@
      * Time: 16:15
      */
 spl_autoload_register(function ($class) {
-    include_once __DIR__.'/service/' . $class .'php';
+    include_once __DIR__.'/service/' . $class .'.php';
 });
 class server
 {
